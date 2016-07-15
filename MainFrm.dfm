@@ -2,7 +2,7 @@ object frmMain: TfrmMain
   Left = 0
   Top = 0
   BorderStyle = bsDialog
-  Caption = 'MongoDemo'
+  Caption = 'MongoDemo [FireDAC]'
   ClientHeight = 516
   ClientWidth = 507
   Color = clBtnFace
@@ -13,6 +13,7 @@ object frmMain: TfrmMain
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnDestroy = FormDestroy
   PixelsPerInch = 96
   TextHeight = 13
   object btnConnect: TButton
@@ -33,30 +34,13 @@ object frmMain: TfrmMain
     TabOrder = 1
     OnClick = btnAddClick
   end
-  object memLog: TJvMemo
-    AlignWithMargins = True
-    Left = 3
-    Top = 66
-    Width = 501
-    Height = 447
-    Align = alBottom
-    Font.Charset = ANSI_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -16
-    Font.Name = 'Courier New'
-    Font.Style = []
-    Lines.Strings = (
-      '')
-    ParentFont = False
-    TabOrder = 2
-  end
   object btnRead: TButton
     Left = 208
     Top = 16
     Width = 80
     Height = 25
     Caption = 'Read'
-    TabOrder = 3
+    TabOrder = 2
     OnClick = btnReadClick
   end
   object btnUpdate: TButton
@@ -74,7 +58,32 @@ object frmMain: TfrmMain
     Width = 80
     Height = 25
     Caption = 'Delete'
-    TabOrder = 5
+    TabOrder = 3
     OnClick = btnDeleteClick
+  end
+  object memLog: TMemo
+    AlignWithMargins = True
+    Left = 3
+    Top = 56
+    Width = 501
+    Height = 457
+    Align = alBottom
+    TabOrder = 5
+  end
+  object FDMongoQuery: TFDMongoQuery
+    FormatOptions.AssignedValues = [fvStrsTrim2Len]
+    FormatOptions.StrsTrim2Len = True
+    UpdateOptions.KeyFields = '_id'
+    Connection = FDConnection
+    Left = 312
+    Top = 88
+  end
+  object FDConnection: TFDConnection
+    Params.Strings = (
+      'DriverID=Mongo')
+    Connected = True
+    LoginPrompt = False
+    Left = 184
+    Top = 136
   end
 end
